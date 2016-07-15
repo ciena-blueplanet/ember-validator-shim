@@ -84,6 +84,10 @@ module.exports = {
   treeForAddon (tree) {
     const validatorTree = this._getValidatorTree()
 
+    if (!tree) {
+      return this._super.treeForAddon.call(this, validatorTree)
+    }
+
     const trees = mergeTrees([validatorTree, tree], {
       overwrite: true
     })
