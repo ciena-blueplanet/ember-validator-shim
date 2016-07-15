@@ -14,7 +14,7 @@ ember install ember-validator-shim
 import validator from 'validator'
 ```
 
-To learn more about `validator` and how to use it visit the  [validator](https://github.com/chriso/validator) Github page.
+To learn more about `validator` and how to use it visit the  [validator](https://github.com/chriso/validator.js) Github page.
 
 [ci-img]: https://img.shields.io/travis/ciena-blueplanet/ember-validator-shim.svg "Travis CI Build Status"
 [ci-url]: https://travis-ci.org/ciena-blueplanet/ember-validator-shim
