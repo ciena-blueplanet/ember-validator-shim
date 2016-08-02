@@ -1,3 +1,9 @@
+# 0.2.0
+
+* **Updated** `validator` to version `5.5.0`.
+
+
+
 # 0.1.3
 
 * **Fixed** build for consumers.
