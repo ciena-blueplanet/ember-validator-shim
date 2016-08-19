@@ -55,6 +55,7 @@
   ],
   "dependencies": {
     "5to6-codemod": "^1.1.0",
+    "broccoli-merge-trees": "^1.1.4",
     "broccoli-metal": "^1.0.0",
     "broccoli-replace": "^0.12.0",
     "ember-cli-babel": "^5.1.9",
