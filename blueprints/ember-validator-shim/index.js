@@ -1,7 +1,7 @@
 module.exports = {
   afterInstall: function () {
     return this.addPackagesToProject([
-      {name: 'validator', target: '5.5.0'}
+      {name: 'validator', target: '6.2.0'}
     ])
   },
 

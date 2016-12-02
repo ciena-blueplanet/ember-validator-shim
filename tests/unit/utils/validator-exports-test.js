@@ -8,7 +8,7 @@ describe('validator', function () {
   })
 
   it('is specifies correct version', function () {
-    expect(validator.version).to.equal('5.5.0')
+    expect(validator.version).to.equal('6.2.0')
   })
 
   ;[
@@ -31,7 +31,7 @@ describe('validator', function () {
     'isLength',
     'isMobilePhone',
     'isMultibyte',
-    'isNull',
+    'isEmpty',
     'isUUID',
     'isWhitelisted',
     'ltrim',
