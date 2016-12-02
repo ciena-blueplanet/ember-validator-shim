@@ -1,3 +1,8 @@
+# 2.0.0
+* **Updated** `validator` to `6.2.0`
+* `isNull` was renamed to `isEmpty`
+
+
 # 1.0.1
 
 * **Updated** Travis configuration to test addon against older versions of Ember.
