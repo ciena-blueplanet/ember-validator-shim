@@ -1,3 +1,10 @@
+# 2.1.0
+
+* **Added** additional builds to CI to make sure addon works with latest versions of Ember.
+* **Removed** files from npm package that aren't necessary (all of the various config files).
+* **Updated** dependencies to latest versions.
+
+
 # 2.0.0
 * **Updated** `validator` to `6.2.0`
 * `isNull` was renamed to `isEmpty`
