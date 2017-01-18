@@ -70,7 +70,7 @@ module.exports = {
       ],
       patterns: [
         {
-          match: /module\.exports = exports\['default'\];/g,
+          match: /module\.exports = exports\['default'];/g,
           replacement: ''
         },
         {
