@@ -56,7 +56,7 @@
     "validator"
   ],
   "dependencies": {
-    "5to6-codemod": "^1.1.0",
+    "5to6-codemod": "^1.1.1",
     "broccoli-merge-trees": "^1.1.4",
     "broccoli-metal": "^1.0.0",
     "broccoli-replace": "^0.12.0",
