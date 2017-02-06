@@ -1,3 +1,8 @@
+# 2.1.2
+
+* **Updated** CI to test in Chrome as well as Firefox.
+
+
 # 2.1.1
 
 * **Upgraded** to test against Ember 2.11.
