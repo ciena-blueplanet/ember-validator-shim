@@ -1,12 +1,11 @@
 sudo: required
 dist: trusty
 language: node_js
+
 node_js:
 - '6.9'
 - 'stable'
-branches:
-  except:
-  - /^v[0-9\.]+/
+
 addons:
   apt:
     sources:
@@ -15,9 +14,12 @@ addons:
     packages:
     - google-chrome-stable
     - g++-4.8
+  firefox: 'latest-esr'
+
 cache:
   directories:
     - node_modules
+
 env:
   matrix:
   - EMBER_TRY_SCENARIO=ember-1-12
@@ -40,29 +42,29 @@ env:
   global:
     - CXX=g++-4.8
     - secure: OZ8cWVTWkuL8BGnUmvyE3XVy1BvPiNfrWKt2xhs3TIUJn0c/oY68KG2+aYfdrCSzfClcrl66NTQZc0dOBQkrpTlQWAFzxzi4XU6aMvGmQNuy/ExyoKEGWterX7/lBYjEiXR/lacI8CKa7rLTkaYeu+NoDINI6OZ+CvHO8BfBixhYBPXAL/rB8He3mr7+FYYou+W1fZltswKbwQNanVjKGJnUnFJuAupvIimAb9BNUt4iFaOyyU8dnAjSLckz8xYrKNRso9Xibm/WaJgeZ8pwUqh2w+e7YzN3OgCNTM+joPOq4h+dk5LaAWzfT0YVkP5T7MnWJjKEnwcPAgAPBbVnsj1kub2OKK+L2gE47hi1LWbDskiM5BRZyoQ2Qeiv0QIhi5GUMYawzZVfB+0eMMSrY/5oppxcGVuL4Mxf9WwmBR9JUjnGA9/qBu5/TcwNKrtpUBadv9sCWy1E7UVlRa/eQ07xB2puFlbn+dRpLPKucLCpEXDJetIAH7HQHAiLs7Hqwe/b81uje3LGlD/MHZdUZ0SsxvxNqsNFjjAYS37rPS5i4aYHUgvG17ZOWtNFdaLUJP3XcEG/kFqGX/bfsTsMDfNisq/6ARxaXrta8CwTLQWD9UUOe7kAcx2S24sh+iKsZ9klA1r75sPd7J7sWmllDmXZ16dfZ5W9w432dnuwm94=
+
 matrix:
   fast_finish: true
   allow_failures:
   - env: EMBER_TRY_SCENARIO=ember-beta
   - env: EMBER_TRY_SCENARIO=ember-canary
+
 before_install:
-- npm config set spin false
-- npm install -g coveralls pr-bumper
-- pr-bumper check
-install:
-- npm install
-- bower install
-before_script:
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
-- sleep 3 # give xvfb some time to start
+- npm config set spin false
+- npm install -g coveralls pr-bumper
+
+install:
+- $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+
 script:
-- npm run lint
-- ember try:one $EMBER_TRY_SCENARIO --- ember test
+- $(npm root -g)/pr-bumper/.travis/maybe-test.sh
+- $(npm root -g)/pr-bumper/.travis/maybe-bump-version.sh
+
 after_success:
-- .travis/publish-coverage.sh
-before_deploy:
-- pr-bumper bump
+- $(npm root -g)/pr-bumper/.travis/maybe-publish-coverage.sh
+
 deploy:
   provider: npm
   email: npm.ciena@gmail.com
@@ -70,10 +72,11 @@ deploy:
   api_key:
     secure: X6+tDaEWodJIap72cJWwDvdRmvO6f23CA4a3XCc0hgx7HyxTvKiLo9HIfiA9i/s9voIcniT4S1GJo+isF3s+Tp1O+IoRrf6ci6VYBduWjQM6O98MkVUlbct4eM7kF4HHu5BA2y3B7189ZWflU5bVCYMVRNVI660JrTVHeMJjKBq3ZK7K+YekwkcAMNd/EixeiEg4R0PZaIZTguiYhIpelNp2xR7VeJhuZeEBv7Z5WT7zIvxGhMpqxQrrHCppEH9FLWzpQCoX6IeTd5COFDjNQ+eDiQgVCbEOae7zExc0VSG9Buwc3pyRrMFsS/0PjG/zE1OXG6MhhYI+Bze9gv4qJ6MpMiJwW8F07ljuXS7RpncRoWyc+WP8OcmoGXic0thqGFCuLfKLp7OeQjB2rbYfRVjMFBXBPPFHAzWxFssf4VaxqHxpQaFYCkWlClPPYMfnrZr/U+lnl5nIQ86o2h0aGbz7XLBMeES6g6ECaurpbW0v5EFQv77dXajhmnzJ3neHfiiRWxRCiR7C0yla00bSoR3FagFe1ZO4IcN8H7i6vdIigeO0549J2pkjtF1vBMUUfxS/WQwaZTwuYrxK1rBJOr9gY9Bu/9tKAqUzgLVU2YTxDeKHUjX41ao2zg0oxwdlYT6evM1Ie/4d3UdB3743OEqximGpRO/C8bOBmOAzZuk=
   on:
-    branch: master
+    all_branches: true
     condition: "$EMBER_TRY_SCENARIO = 'default'"
     node: 'stable'
     tags: true
+
 notifications:
   slack:
     secure: dG4SEytJdfHDgvZz6g1piFhnPHAUstVNm8tgotfZqqjVEtqYWMdm9Ib31csuRIYnvZUIEFEcrygLsq1ZMac3hoBzBR9i6Y1Mf/LJqPTRl4++CE/p/DlRZ8a4cZUJpNCTtV8mf9h1zXyj5PJkaO2ZHdVFszcsmEfVDOVb8s27+uj03xC7Ir1Qqyzsd1QCiBEY//lry/0AwCslTZz6tXCz4e2wojbB+L6/+U1frAZqKG7jiHC7j0a9uQkNsfb8W8xyWrdJKpX9SWxqzpiJF8afYfvtVy7uNYzmVmaCsq4RrwjI17dFVBAtSAsWWir4JpHH0GNBzpd1QwvHxcmUnKV39KACu4Z9PLLzITNb71YNbez+CpvgJf2CcymwhxdlAW4qVcznO+QaC5wTcFrUKaVOFNc0TPWfX+WjPK+aG9uOTVrkG+BQolE9tG8l3V29A1kKEDK/+BKwiq4YGVGQEHDAg9a/MdYhCY73O98IWxxgHoYF85x+xRjBaGoulNGTLi5FLPVQYtmP3m+PTQGu3KxoaKN4oS8Kk90s/45ER8m39i181OhaJzoIEKz6MVicjNhL2i0ayCLHdLfPBWHgXYhmEcO7RHGpgPl1XZYpN3ZRESszhS5WHvfRhZDriHddersF5dTzmJBEpXZEKYbeMwEQyECikgeJKuaFRoId2LyBmRA=
