@@ -1,3 +1,7 @@
+# 2.1.3
+
+* **Fixed** build to publish.
+
 # 2.1.2
 
 * **Updated** CI to test in Chrome as well as Firefox.
