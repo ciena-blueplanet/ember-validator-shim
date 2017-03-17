@@ -1,3 +1,7 @@
+# 2.1.4 (2017-03-17)
+
+* **Fixed** build by explicitly pinning `5to6-codemod` to version `1.4.0`.
+
 # 2.1.3
 
 * **Fixed** build to publish.
