@@ -1,3 +1,26 @@
+# 2.3.0 (2017-03-22)
+
+* **Changed** shim to supply `validator` via `vendor` to get smaller builds.
+
+  Before vendor optimization:
+  ```
+  - dist/assets/dummy-44e3761e0c06a3544042b299c6ac7aeb.js: 3.1 KB (1.21 KB gzipped)
+  - dist/assets/dummy-d41d8cd98f00b204e9800998ecf8427e.css: 0 B
+  - dist/assets/vendor-19aa367edab338960d4a7395669080c8.js: 703.55 KB (177.32 KB gzipped)
+  - dist/assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css: 0 B
+  ```
+
+  After vendor optimization:
+  ```
+  - dist/assets/dummy-44e3761e0c06a3544042b299c6ac7aeb.js: 3.1 KB (1.21 KB gzipped)
+  - dist/assets/dummy-d41d8cd98f00b204e9800998ecf8427e.css: 0 B
+  - dist/assets/vendor-30f2ea169fe9c92cb37805ef11f1d6fd.js: 641.32 KB (170.4 KB gzipped)
+  - dist/assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css: 0 B
+  ```
+
+  Approximately 60 KB were shaved off.
+
+
 # 2.2.0 (2017-03-22)
 
 * **Replaced** blueprints with npm dependency so consumers don't have to maintain their own version of `validator`.
