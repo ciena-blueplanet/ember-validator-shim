@@ -1,3 +1,8 @@
+# 2.2.0 (2017-03-22)
+
+* **Replaced** blueprints with npm dependency so consumers don't have to maintain their own version of `validator`.
+
+
 # 2.1.4 (2017-03-17)
 
 * **Fixed** build by explicitly pinning `5to6-codemod` to version `1.4.0`.
