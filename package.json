@@ -50,14 +50,8 @@
     "validator"
   ],
   "dependencies": {
-    "5to6-codemod": "1.4.0",
-    "broccoli-merge-trees": "^1.1.4",
-    "broccoli-metal": "^1.0.0",
-    "broccoli-replace": "^0.12.0",
     "ember-cli-babel": "^5.1.9",
-    "ember-cli-htmlbars": "^1.1.0",
-    "jscodeshift": "^0.3.25",
-    "validator": "^6.0.0"
+    "ember-cli-htmlbars": "^1.1.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

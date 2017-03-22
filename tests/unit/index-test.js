@@ -8,7 +8,7 @@ describe('validator', function () {
   })
 
   it('is specifies correct version', function () {
-    expect(validator.version).to.equal('6.2.1')
+    expect(validator.version).to.equal('6.3.0')
   })
 
   ;[
