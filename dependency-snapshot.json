@@ -1,6 +1,6 @@
 {
   "name": "ember-validator-shim",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "dependencies": {
     "5to6-codemod": {
       "version": "1.4.0",
@@ -8725,8 +8725,7 @@
     "validator": {
       "version": "6.2.1",
       "from": "validator@6.2.1",
-      "resolved": "https://registry.npmjs.org/validator/-/validator-6.2.1.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/validator/-/validator-6.2.1.tgz"
     },
     "vary": {
       "version": "1.1.0",
