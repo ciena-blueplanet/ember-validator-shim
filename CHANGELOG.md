@@ -1,3 +1,8 @@
+# 2.3.1 (2017-05-11)
+
+* **Add** `.pr-bumper.json`
+
+
 # 2.3.0 (2017-03-22)
 
 * **Changed** shim to supply `validator` via `vendor` to get smaller builds.
