@@ -1,5 +1,5 @@
-{
-  "extends": ["frost-standard"],
+module.exports = {
+  extends: 'frost-standard',
   "rules": {
     "ocd/sort-import-declarations": [
       2,
@@ -13,4 +13,4 @@
       }
     ]
   }
-}
+};

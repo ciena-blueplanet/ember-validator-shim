@@ -1,5 +1,5 @@
+/* eslint-env node */
 var Reporter = require('ember-test-utils/reporter')
-
 module.exports = {
   disable_watching: true,
   framework: 'mocha',
