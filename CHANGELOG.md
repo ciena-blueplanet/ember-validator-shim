@@ -1,3 +1,8 @@
+# 2.3.2 (2017-07-07)
+
+Upgrade Ember-cli to 2.12.3
+
+
 # 2.3.1 (2017-05-11)
 
 * **Add** `.pr-bumper.json`
