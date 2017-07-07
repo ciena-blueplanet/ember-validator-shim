@@ -8,11 +8,9 @@
 .editorconfig
 .ember-cli
 .eslintignore
-.eslintrc
+.eslintrc.js
 .github
 .gitignore
-.jshintrc
-.eslintrc.js
 .pullapprove.yml
 .remarkrc
 .travis

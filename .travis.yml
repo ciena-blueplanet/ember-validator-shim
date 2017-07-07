@@ -22,8 +22,12 @@ cache:
 
 env:
   matrix:
+  - EMBER_TRY_SCENARIO=ember-lts-2.4
   - EMBER_TRY_SCENARIO=ember-lts-2.8
   - EMBER_TRY_SCENARIO=ember-default
+  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
   global:
     - CXX=g++-4.8
     - secure: Psmz9EtEiwUCY7aMVQ/zMqKfIvCq7aHKNa5NvIcYeFhr0MEmETTAvKoWqKp3+M01wvtNzFFUaINr1Tu0juWf8zcrDLrqbaCYe3fcjb8LGMpz5P6U1bMvhtfgI4+jaDV1c7bgHEnjhpPw2ylpNNulvUbClLQLx2swHwJUAtvEP08qWgMQ+v4aiip2SKg81z0oKAN6qUbiNVcydx4HZ4gEfHQ28Ee/EDggUu7mVLINKRalMf1QDA+yA9TFAiVepkwpHjvVwKnEL1K4WTQ0K5CZ0EWw1JSuHy8xGd8ACbd7+abkdXoae2KdACVx/HxfuXG/oWxhVtX7dOqpqzrn15fqRMBpVV/fuQjgfPi687aaqXTQwx/At9V6IQmJnacqMKyO5EQNepFMYbZeD7J1yxImcuFfzQTfScUJl9SWFgjyzJ0tUHZdilWh3f+Jtdq9IO8wP9Db51207GHJPXvRr2RLD6tL43KNHftUzK9SYZ5OKC2kxZDa0Z4I/gQKtb6Dxg4BKIHSXKvkmvURf8NYqGnIk8IvrnkIhxQoWPhgcNQB0mg6wJBdGWh+cm9A5vZ7McX6wuppVJsMH0kF53S8khLPmMp7mGO0J9+4Y2xnvidO/F33ydV77vU+mTLO3JPbjyj/zQsy+HnhIMEDdGzX9/1EKm+9ZaCKQBlr3PNWQuqp9uA=
@@ -31,25 +35,30 @@ env:
 matrix:
   fast_finish: true
   allow_failures:
+  - env: EMBER_TRY_SCENARIO=ember-release
   - env: EMBER_TRY_SCENARIO=ember-beta
   - env: EMBER_TRY_SCENARIO=ember-canary
   - node_js: 'stable'
-  
+
 before_install:
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
-- npm config set spin false
-- npm install -g coveralls pr-bumper
+  - npm config set spin false
+  - npm install -g coveralls pr-bumper@^1.0.0
+  - $(npm root -g)/pr-bumper/.travis/maybe-check-scope.sh
 
 install:
-- $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+  - $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 
 script:
-- $(npm root -g)/pr-bumper/.travis/maybe-test.sh
-- if [ $EMBER_TRY_SCENARIO == "default" ]; then $(npm root -g)/pr-bumper/.travis/maybe-bump-version.sh; fi
+  - $(npm root -g)/pr-bumper/.travis/maybe-test.sh
+  - .travis/maybe-bump-version.sh
 
 after_success:
-- $(npm root -g)/pr-bumper/.travis/maybe-publish-coverage.sh
+  - .travis/maybe-publish-coverage.sh
 
 deploy:
   provider: npm
@@ -60,7 +69,7 @@ deploy:
   on:
     all_branches: true
     condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
-    node: 'stable'
+    node: '6.9.1'
     tags: true
 
 notifications:
