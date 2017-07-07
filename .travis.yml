@@ -22,9 +22,9 @@ cache:
 
 env:
   matrix:
-  - EMBER_TRY_SCENARIO=ember-1-12
-  - EMBER_TRY_SCENARIO=ember-2-8
-  - EMBER_TRY_SCENARIO=default
+  - EMBER_TRY_SCENARIO=ember-lts-2.4
+  - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-default
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
@@ -35,24 +35,30 @@ env:
 matrix:
   fast_finish: true
   allow_failures:
+  - env: EMBER_TRY_SCENARIO=ember-release
   - env: EMBER_TRY_SCENARIO=ember-beta
   - env: EMBER_TRY_SCENARIO=ember-canary
+  - node_js: 'stable'
 
 before_install:
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
-- npm config set spin false
-- npm install -g coveralls pr-bumper
+  - npm config set spin false
+  - npm install -g coveralls pr-bumper@^1.0.0
+  - $(npm root -g)/pr-bumper/.travis/maybe-check-scope.sh
 
 install:
-- $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+  - $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 
 script:
-- $(npm root -g)/pr-bumper/.travis/maybe-test.sh
-- if [ $EMBER_TRY_SCENARIO == "default" ]; then $(npm root -g)/pr-bumper/.travis/maybe-bump-version.sh; fi
+  - $(npm root -g)/pr-bumper/.travis/maybe-test.sh
+  - .travis/maybe-bump-version.sh
 
 after_success:
-- $(npm root -g)/pr-bumper/.travis/maybe-publish-coverage.sh
+  - .travis/maybe-publish-coverage.sh
 
 deploy:
   provider: npm
@@ -62,8 +68,8 @@ deploy:
     secure: NWWCQl+qvz7MV+RzKYPMdPHvSga6LGZ0SUIQ91PzpzeAmcJoRFdEbboTojShbQnT3gxirOaaJypj6zstxb1uu++uXBeweh5Sz+eUKFWSfoi8y4Xk1K2DtPrOn+Gaw6syQENZgjAo+EY16WIGdVIZKJdjVI/AJ7mEK48tnTLn5Cd11ifZfuvjVKHgAhXOHC7ovtXbk0cbMznvxfQwY+hhjemCFZcBSBf7WsUf16zybanYigOwDMVVD2Rk0htS9Gyrzkvqx9hrpC3J8lemR4rsUHz5v4Qi8nruKr+BytLlkNoK3oQdQnIzINd3diGuqNsyaIwbrWEot0jUU+CUwNKf878f0/3tnGfryio2IGOuQICcvLP33wcDe/s7r86f+km5TlpOXXoBlazSZdpB/GpdIgoTgqN4UMkTGslwZfkG3dye28zwcPKf27BK9QoKVTryi75uBtfM0N59aUJJWRCMGT3cpwn8YmgLWl0IL4ItJrrgQenLd3Bix6mNJP2ebYbxp9Yug+xevVW1LcehUOrP48Ar3DaXbnR8npCdw3V4OJ3WMQtm1xaHWpFVIerbgpxfvPTsxEzhowinu+UaJ1oQksZiKNNTfNSSpbFnEmxZwr1YcDwoLVtZFqLJVRmue2nkuiAnp4H7rjv0ydMuZa9I6+Ham0weunEeYglrsGHnD/M=
   on:
     all_branches: true
-    condition: "$EMBER_TRY_SCENARIO = 'default'"
-    node: 'stable'
+    condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
+    node: '6.9.1'
     tags: true
 
 notifications:
