@@ -1,3 +1,6 @@
+# 2.3.3 (2017-12-11)
+* **Updated** binding of _super call inside `included` hook of `index.js`
+
 # 2.3.2 (2017-07-07)
 
 Upgrade Ember-cli to 2.12.3
