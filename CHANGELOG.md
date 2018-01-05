@@ -1,3 +1,15 @@
+# 3.0.0 (2018-01-05)
+
+* Remove `ember-cli-test-loader` NPM devDependency
+* Remove useLintTree from ember-cli-mocha configuration
+* Remove reference to unused ember-cli-code-coverage configuration
+* Move `ember-cli-htmlbars` NPM dependency to devDependency
+* Pin `ember-cli-htmlbars-inline-precompile` to `0.3.12`
+* Install `ember-frost-test` NPM devDependency @ `^4.0.0`
+* Update README to include version information for validator package
+* gitignore _package-lock.json_ until officially support Node 8
+  
+
 # 2.3.3 (2017-12-11)
 * **Updated** binding of _super call inside `included` hook of `index.js`
 
