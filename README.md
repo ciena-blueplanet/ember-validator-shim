@@ -1,5 +1,7 @@
 # ember-validator-shim
 
+This addon provides an Ember shim for version `6.3.0` of the [validator](https://github.com/chriso/validator.js) package.
+
 ###### Dependencies
 
 ![Ember][ember-img]
