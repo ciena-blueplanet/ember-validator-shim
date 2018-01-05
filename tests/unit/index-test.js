@@ -3,11 +3,11 @@ import {describe, it} from 'mocha'
 import validator from 'validator'
 
 describe('validator', function () {
-  it('is a single module that has been exported', function () {
+  it('should be a single module that has been exported', function () {
     expect(typeof validator).to.equal('object')
   })
 
-  it('is specifies correct version', function () {
+  it('should specify correct version', function () {
     expect(validator.version).to.equal('6.3.0')
   })
 
