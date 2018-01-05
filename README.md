@@ -1,6 +1,7 @@
 # ember-validator-shim
 
-This addon provides an Ember shim for version `6.3.0` of the [validator](https://github.com/chriso/validator.js) package.
+This addon provides an Ember shim for version `6.3.0` of the [validator](https://github.com/chriso/validator.js) 
+package.
 
 ###### Dependencies
 
@@ -29,7 +30,8 @@ ember install ember-validator-shim
 import validator from 'validator'
 ```
 
-To learn more about `validator` and how to use it visit the  [validator](https://github.com/chriso/validator.js) Github page.
+To learn more about `validator` and how to use it visit the  [validator](https://github.com/chriso/validator.js) 
+Github page.
 
 [bithound-img]: https://www.bithound.io/github/ciena-blueplanet/ember-validator-shim/badges/score.svg "bitHound"
 [bithound-url]: https://www.bithound.io/github/ciena-blueplanet/ember-validator-shim
