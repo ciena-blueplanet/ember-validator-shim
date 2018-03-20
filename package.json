@@ -1,6 +1,6 @@
 {
   "name": "ember-validator-shim",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "String validators and sanitizers for Ember apps",
   "directories": {
     "doc": "doc",
